@@ -138,6 +138,3 @@ let final_pipeline = [
 ];
 
 createOrReplaceStreamProcessor("flightRecordsViaWindow", final_pipeline);
-// sp.createStreamProcessor("flightTrackingWithFirstCallsign", final_pipeline);
-// sp.flightTrackingWithFirstCallsign.start();
-

@@ -159,5 +159,4 @@ let final_pipeline = [
     merge_to_flights
 ];
 
-// sp.process(final_pipeline)
 createOrReplaceStreamProcessor("flightTrackingViaLookup", final_pipeline);
