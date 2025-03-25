@@ -71,6 +71,17 @@ If you encounter issues:
 3. Ensure the MongoDB user has sufficient privileges to run the scripts and manage stream processors
 
 ## How to Run
-create_stream_processors: `terraform apply -target=null_resource.create_stream_processors -var-file=terraform.tfvars -replace="null_resource.create_stream_processors[0]" -replace="null_resource.create_stream_processors[1]" -replace="null_resource.create_stream_processors[2]"`
-start_stream_processors: `terraform apply -target=null_resource.start_stream_processors -var-file=terraform.tfvars -replace="null_resource.start_stream_processors"`
-stop_stream_processors: `terraform apply -target=null_resource.stop_stream_processors -var-file=terraform.tfvars -replace="null_resource.stop_stream_processors"`
+```sh
+#create_stream_processors
+terraform apply -target=null_resource.create_stream_processors -var-file=terraform.tfvars -replace="null_resource.create_stream_processors[0]" -replace="null_resource.create_stream_processors[1]" -replace="null_resource.create_stream_processors[2]"
+
+#start_stream_processors
+terraform apply -target=null_resource.start_stream_processors -var-file=terraform.tfvars -replace="null_resource.start_stream_processors"
+
+#stop_stream_processors
+terraform apply -target=null_resource.stop_stream_processors -var-file=terraform.tfvars -replace="null_resource.stop_stream_processors"
+
+#destroy stream processors
+terraform apply -target=null_resource.destroy_stream_processors -var-file=terraform.tfvars -replace="null_resource.destroy_stream_processors"
+```
+

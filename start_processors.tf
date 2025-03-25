@@ -8,7 +8,7 @@ resource "local_file" "start_processors_script" {
       "try { sp.${name}.start(); print(\"Started ${name}\"); } catch (e) { print(\"Error starting ${name}: \" + e); }"
     ])}
   EOT
-  filename = "${path.module}/start_processors.mongodb.js"
+  filename = "${path.module}/temp/start_processors.mongodb.js"
 }
 
 resource "null_resource" "start_stream_processors" {

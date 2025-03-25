@@ -8,7 +8,7 @@ resource "local_file" "stop_processors_script" {
       "try { sp.${name}.stop(); print(\"Stopped ${name}\"); } catch (e) { print(\"Error stopping ${name}: \" + e); }"
     ])}
   EOT
-  filename = "${path.module}/stop_processors.mongodb.js"
+  filename = "${path.module}/temp/stop_processors.mongodb.js"
 }
 
 # Execute the stop script

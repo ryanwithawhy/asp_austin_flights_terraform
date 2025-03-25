@@ -25,3 +25,5 @@ terraform.rc
 
 # Temporary MongoDB files
 start_processors.mongodb.js
+
+temp/*
