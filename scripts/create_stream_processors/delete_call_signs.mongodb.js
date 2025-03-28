@@ -60,6 +60,7 @@ function createOrReplaceStreamProcessor(streamProcessorName, pipeline) {
     }
 }
 
+// sources records from the change stream of flights
 let flights_collection_change_stream = {
     $source: {
        connectionName: "flights_db",
@@ -68,6 +69,8 @@ let flights_collection_change_stream = {
     }
  };
 
+ // calls an external function that deletes records from the callsigns table every time it's added to the flights collection
+ // this could improve performance by not requiring the database to sort through many callsigns each time
  let delete_https_request = {
     $externalFunction: {
         "connectionName": "delete_callsign",

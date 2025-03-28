@@ -60,6 +60,7 @@ function createOrReplaceStreamProcessor(streamProcessorName, pipeline) {
    }
 }
 
+//
 let source = {
    $source: {
       connectionName: "flights",
@@ -67,6 +68,8 @@ let source = {
    }
 };
 
+
+// message 1 is the only one that has flight data (callsigns) so I filter on it
 let message_1_only = {
    $match: {
       "msg_type": "1"

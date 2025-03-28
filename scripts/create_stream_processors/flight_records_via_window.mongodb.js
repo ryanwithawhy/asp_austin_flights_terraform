@@ -60,9 +60,6 @@ function createOrReplaceStreamProcessor(streamProcessorName, pipeline) {
     }
 }
 
-safeStop(sp.flightTrackingWithFirstCallsign);
-dropIfExists(sp.flightTrackingWithFirstCallsign);
-
 // source is a kafka stream called airplanes
 let source = {
     $source: {
@@ -71,7 +68,8 @@ let source = {
     }
  };
  
-//  create a group of documents by icao, getting the min and max timestamp from the group
+// create a group of documents by icao, getting the min and max timestamp from the group
+// if the flight was included in a message during this window, it will be reported here
  let group_by_timewindow = {
     $group: {
         _id: "$icao", 
@@ -87,6 +85,8 @@ let source = {
     }
 };
 
+// reformat the data after grouping.  the _id remains the icao and the flights becomes an array.
+// flights is an array since we will be merging it to an array of flights later
 let project_fields = {
     "$project": {
       "_id": 1,
@@ -101,6 +101,9 @@ let project_fields = {
     }
   };
 
+// i want to add a record once the flight leaves our area
+// the sesion window allows this by closing the session and sending the records
+// as soon as there are no records for the specified gap time
 let session_window = { $sessionWindow: {
     partitionBy: "$icao",
     gap: { unit: "minute", size: 2},

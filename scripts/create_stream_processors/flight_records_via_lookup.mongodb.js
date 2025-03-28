@@ -96,7 +96,7 @@ let add_callsign = {
     }
 };
 
-// Sort the callsign_info array by time_out in descending order
+// Sort the callsign_info array by time_out in descending order so I can get the most recent callsign in the collection
 let sort_callsigns = {
     $addFields: {
         "callsign_info": {
@@ -108,6 +108,7 @@ let sort_callsigns = {
     }
 };
 
+// formats the records as I wanted
 let project_fields = {
     "$project": {
       "_id": 1,
@@ -122,6 +123,7 @@ let project_fields = {
     }
   };
 
+// closes the window after 2 minutes of no records
 let session_window = { $sessionWindow: {
     partitionBy: "$icao",
     gap: { unit: "minute", size: 2},

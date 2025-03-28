@@ -92,7 +92,8 @@ let sorted_flights = {
     $sort: { "timestamp": -1 }
 };
 
-// Group by aircraft (icao), and take only the first (i.e., latest due to sort) message per aircraft
+// Group by aircraft (icao), and take only the first (i.e., latest due to sort) message per aircraft.  This allows
+// us to get the timestamp of the latest record for each aircraft.
 let latest_flight_per_icao = {
     $group: {
         _id: "$icao",
@@ -140,13 +141,15 @@ let hopping_window = {
     }
 };
 
-
+// This adds the end time of the window to each window
 let add_end_time = {
     $addFields: {
         windowEndTime: { $meta: "stream.window.end" }
     }
 }
 
+// This makes the window pretty by adding the window end time as the _id field
+// I have a weird definition of pretty I know
 let final_version = {
     $project: {
         _id: "$windowEndTime",
@@ -154,6 +157,7 @@ let final_version = {
     }
 };
 
+// This merges it to the collection so we can see it
 let merge_flight_snapshots = {
     $merge: {
         into: {
