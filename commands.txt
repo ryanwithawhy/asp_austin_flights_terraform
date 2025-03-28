@@ -3,7 +3,8 @@ terraform apply -target=null_resource.create_stream_processors -var-file=terrafo
     -replace="null_resource.create_stream_processors[0]" \
     -replace="null_resource.create_stream_processors[1]" \
     -replace="null_resource.create_stream_processors[2]" \
-    -replace="null_resource.create_stream_processors[3]"
+    -replace="null_resource.create_stream_processors[3]" \
+    -replace="null_resource.create_stream_processors[4]" 
 
 # start stream processors:
 terraform apply -target=null_resource.start_stream_processors -var-file=terraform.tfvars -replace="null_resource.start_stream_processors"
@@ -13,6 +14,3 @@ terraform apply -target=null_resource.stop_stream_processors -var-file=terraform
 
 # destroy stream processors:
 terraform apply -target=null_resource.destroy_stream_processors -var-file=terraform.tfvars -replace="null_resource.destroy_stream_processors"
-
-terraform apply -target=null_resource.create_stream_processors -var-file=terraform.tfvars \
-    -replace="null_resource.create_stream_processors[3]"
