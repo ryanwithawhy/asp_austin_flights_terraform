@@ -35,7 +35,8 @@ variable "create_stream_processor_files" {
   default     = [
     "scripts/create_stream_processors/callsign_records.mongodb.js",
     "scripts/create_stream_processors/flight_records_via_lookup.mongodb.js",
-    "scripts/create_stream_processors/flight_records_via_window.mongodb.js"
+    "scripts/create_stream_processors/flight_records_via_window.mongodb.js",
+    "scripts/create_stream_processors/delete_call_signs.mongodb.js"
   ]
 }
 
@@ -45,7 +46,8 @@ variable "stream_processor_names" {
   default     = [
     "callsignRecords",
     "flightTrackingViaLookup",
-    "flightRecordsViaWindow"
+    "flightRecordsViaWindow",
+    "deleteCallSigns"
   ]
 }
 
