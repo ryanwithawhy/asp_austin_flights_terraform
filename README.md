@@ -7,18 +7,7 @@ This Terraform configuration helps you deploy and start MongoDB stream processor
 1. [Terraform](https://www.terraform.io/downloads.html) installed (v1.0.0+)
 2. [MongoDB Shell (mongosh)](https://www.mongodb.com/try/download/shell) installed
 3. Access to a MongoDB instance with the necessary permissions
-
-## File Structure
-
-```
-.
-├── main.tf                      # Main Terraform configuration
-├── terraform.tfvars             # Variables configuration (update with your MongoDB details)
-├── .gitignore                   # Git ignore file
-├── callsign_records.mongodb.js  # Your MongoDB script for callsign records
-├── flight_records_via_lookup.mongodb.js  # Your MongoDB script for flight records via lookup
-└── flight_records_via_window.mongodb.js  # Your MongoDB script for flight records via window
-```
+4. Access to the Kafka stream of flight data
 
 ## Usage
 
@@ -56,24 +45,22 @@ terraform apply
 
 1. Executes each of your MongoDB scripts in sequence
 2. Creates and runs a final script that starts all of your stream processors
+3. Allows you to stop and destroy the stream processors
 
 ## Security Considerations
 
 - The `terraform.tfvars` file contains sensitive information and should not be committed to version control
 - Consider using environment variables or a secrets manager for MongoDB credentials in production environments
 
-## Troubleshooting
-
-If you encounter issues:
-
-1. Check the Terraform output for error messages
-2. Verify MongoDB connection details in `terraform.tfvars`
-3. Ensure the MongoDB user has sufficient privileges to run the scripts and manage stream processors
-
 ## How to Run
 ```sh
-#create_stream_processors
-terraform apply -target=null_resource.create_stream_processors -var-file=terraform.tfvars -replace="null_resource.create_stream_processors[0]" -replace="null_resource.create_stream_processors[1]" -replace="null_resource.create_stream_processors[2]"
+# create or replace stream processors
+terraform apply -target=null_resource.create_stream_processors -var-file=terraform.tfvars \
+    -replace="null_resource.create_stream_processors[0]" \
+    -replace="null_resource.create_stream_processors[1]" \
+    -replace="null_resource.create_stream_processors[2]" \
+    -replace="null_resource.create_stream_processors[3]" \
+    -replace="null_resource.create_stream_processors[4]" 
 
 #start_stream_processors
 terraform apply -target=null_resource.start_stream_processors -var-file=terraform.tfvars -replace="null_resource.start_stream_processors"
