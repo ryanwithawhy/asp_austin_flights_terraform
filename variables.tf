@@ -33,11 +33,12 @@ variable "create_stream_processor_files" {
   description = "MongoDB JS files that define stream processors"
   type        = list(string)
   default     = [
-    "scripts/create_stream_processors/callsign_records.mongodb.js",
-    "scripts/create_stream_processors/flight_records_via_lookup.mongodb.js",
-    "scripts/create_stream_processors/flight_records_via_window.mongodb.js",
-    "scripts/create_stream_processors/delete_call_signs.mongodb.js",
-    "scripts/create_stream_processors/aerial_snapshots.mongodb.js"
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/callsign_records.mongodb.js",
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/flight_records_via_lookup.mongodb.js",
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/flight_records_via_window.mongodb.js",
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/delete_call_signs.mongodb.js",
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/aerial_snapshots.mongodb.js",
+    "/Users/ryan.waldorf/dev/austin_flights/austin_terraform/scripts/create_stream_processors/flight_windows_for_dw.mongodb.js"
   ]
 }
 
@@ -49,7 +50,8 @@ variable "stream_processor_names" {
     "flightTrackingViaLookup",
     "flightRecordsViaWindow",
     "deleteCallSigns",
-    "aerialSnapshots"
+    "aerialSnapshots",
+    "flightWindowsForDW"
   ]
 }
 

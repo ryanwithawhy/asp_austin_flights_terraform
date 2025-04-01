@@ -27,3 +27,4 @@ terraform.rc
 start_processors.mongodb.js
 
 temp/*
+credentials
