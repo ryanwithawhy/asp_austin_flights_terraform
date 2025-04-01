@@ -91,7 +91,7 @@ let source = {
 // as soon as there are no records for the specified gap time
 let session_window = { $sessionWindow: {
     partitionBy: "$icao",
-    gap: { unit: "second", size: 120},
+    gap: { unit: "minute", size: 2},
     pipeline: [
         group_by_timewindow
     ]
