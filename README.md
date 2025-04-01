@@ -60,7 +60,8 @@ terraform apply -target=null_resource.create_stream_processors -var-file=terrafo
     -replace="null_resource.create_stream_processors[1]" \
     -replace="null_resource.create_stream_processors[2]" \
     -replace="null_resource.create_stream_processors[3]" \
-    -replace="null_resource.create_stream_processors[4]" 
+    -replace="null_resource.create_stream_processors[4]" \
+    -replace="null_resource.create_stream_processors[5]" \
 
 #start_stream_processors
 terraform apply -target=null_resource.start_stream_processors -var-file=terraform.tfvars -replace="null_resource.start_stream_processors"
